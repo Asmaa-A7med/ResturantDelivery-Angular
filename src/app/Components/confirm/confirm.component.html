@@ -1,0 +1,101 @@
+<div class="container py-5">
+     
+    <h2 class="text-start">Your Data</h2>
+    <hr style="border-top: 3px solid #ffc107; width: 120px; margin-left: 0;" />
+  
+   
+    <div class="row text-uppercase fw-bold mb-2">
+      <div class="col-md-3 d-flex align-items-center">
+        <i class="bi bi-person-fill me-2 text-warning"></i> Name
+      </div>
+      <div class="col-md-3 d-flex align-items-center">
+        <i class="bi bi-envelope-fill me-2 text-warning"></i> Email
+      </div>
+      <div class="col-md-3 d-flex align-items-center">
+        <i class="bi bi-telephone-fill me-2 text-warning"></i> Phone
+      </div>
+      <div class="col-md-3 d-flex align-items-center">
+        <i class="bi bi-geo-alt-fill me-2 text-warning"></i> Address
+      </div>
+    </div>
+  
+    <!--  dispaly user data :-->
+    <div class="row text-muted">
+      <div class="col-md-3">{{ reservationData?.name }}</div>
+      <div class="col-md-3">{{ reservationData?.email }}</div>
+      <div class="col-md-3">{{ reservationData?.phone }}</div>
+      <div class="col-md-3">{{ reservationData?.address }}</div>
+    </div>
+  </div>
+  
+   <!--  order tablle :-->
+  <!-- order table -->
+<div class="table-responsive mt-5 d-flex justify-content-center">
+  <table class="table table-bordered align-middle text-center table-sm" 
+         style="background-color: white; max-width: 800px; border-radius: 8px; overflow: hidden;">
+    <thead class="table-warning text-uppercase">
+      <tr>
+        <th style="width: 80px;">Image</th>
+        <th>Product</th>
+        <th style="width: 100px;">Price</th>
+        <th style="width: 120px;">Quantity</th>
+        <th style="width: 120px;">Total Price</th>
+        <th style="width: 80px;">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>
+          <img [src]="item.imageUrl" alt="Product" width="60" height="60" class="rounded" style="object-fit: cover;">
+        </td>
+        <td class="text-truncate" style="max-width: 150px;">{{ item.name }}</td>
+        <td>{{ item.price | currency }}</td>
+        <td>
+          <div class="d-flex justify-content-center align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-warning" (click)="decreaseQuantity(item)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button class="btn btn-sm btn-outline-warning" (click)="increaseQuantity(item)">+</button>
+          </div>
+        </td>
+        <td>{{ item.price * item.quantity | currency }}</td>
+
+        <td>
+            <button class="btn btn-sm btn-danger" (click)="removeItem(item)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Total Table -->
+<div class="d-flex justify-content-center mt-4">
+    <table class="table text-start" 
+           style="border: 2px solid orange; max-width: 800px; background-color: #fff;">
+      <thead>
+        <tr>
+          <th colspan="2" class="fs-5 text-uppercase text-warning">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fw-bold">Sub Total</td>
+          <td class="text-end">{{ getSubtotal() | currency }}</td>
+        </tr>
+        <tr>
+          <td colspan="2"><hr class="my-1" /></td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Total</td>
+          <td class="text-end">{{ getSubtotal() | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-center gap-3 mt-3">
+    <button class="btn btn-outline-secondary" (click)="goBack()">Back</button>
+    <button class="btn btn-warning text-white" (click)="checkout()">Checkout</button>
+  </div>
+  

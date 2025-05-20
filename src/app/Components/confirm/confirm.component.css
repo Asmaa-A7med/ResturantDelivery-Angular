@@ -1,0 +1,17 @@
+.table-sm th, 
+.table-sm td {
+  padding: 0.4rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.table-responsive {
+  background-color: transparent; 
+}
+
+ 
+table {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}

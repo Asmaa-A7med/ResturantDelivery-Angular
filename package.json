@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^19.2.11",
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
     "@angular/core": "^19.2.0",
@@ -17,7 +18,12 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@esbuild/win32-x64": "^0.25.4",
+    "bootstrap": "^5.3.6",
+    "bootstrap-icons": "^1.13.1",
+    "esbuild": "^0.25.4",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.21.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

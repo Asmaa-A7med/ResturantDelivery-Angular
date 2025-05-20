@@ -1,0 +1,35 @@
+.menu-container {
+    background-color: #dfdddd; 
+  }
+  
+  
+  .menu-item-name {
+    display: inline-block;
+    color: #ecca0a;  
+    border-bottom: 3px solid #ecca0a;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+    font-size: 1.25rem;  
+  }
+  
+ 
+  .menu-item-price {
+    color: #ecca0a;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+   
+  .custom-checkbox {
+    border: 2px solid #ecca0a;
+    border-radius: 4px;
+    cursor: pointer;
+    accent-color: #ecca0a;  
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+ 
+  .custom-checkbox:checked {
+    background-color: #ecca0a;
+    border-color: #ecca0a;
+  }
+  
