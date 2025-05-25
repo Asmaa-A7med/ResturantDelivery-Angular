@@ -24,6 +24,10 @@ export class ReserveComponent implements OnInit {
   ngOnInit() {
    
     this.itemId = this.route.snapshot.paramMap.get('id');
+     const savedData = localStorage.getItem('reservationData');
+  if (savedData) {
+    this.reservation = JSON.parse(savedData);
+     }
   }
   onSubmit() {
     if (this.isFormValid()) {

@@ -20,11 +20,25 @@ export class MenuComponent implements OnInit{
 
   ngOnInit(): void {
     this.restaurantId = Number(this.activateRoute.snapshot.paramMap.get('id'));
+
+     const savedCartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
  //   let restaurantId=this.activateRoute.params(data=>[]) ;  
     this.menuService.getMenuByRestaurantId(this.restaurantId).subscribe({
       next: (data) => {
-        this.menuItems = data;
-      },
+       this.menuItems = data.map(menuItem => {
+        const matched = savedCartItems.find((savedItem: any) =>
+          savedItem.name === menuItem.name && savedItem.price === menuItem.price
+        );
+        return {
+          ...menuItem,
+          selected: !!matched
+        };
+      });
+
+ 
+      this.hasSelectedItem = this.menuItems.some(item => item.selected);
+    },
+    
       error: (err) => {
         console.error('error loading menue', err);
       }
@@ -35,22 +49,26 @@ export class MenuComponent implements OnInit{
     this.hasSelectedItem = this.menuItems.some(item => item.selected);
   }
 
-  goToNextPage(): void {
-    const selectedItems = this.menuItems
+goToNextPage(): void {
+  const selectedItems = this.menuItems
     .filter(item => item.selected)
     .map(item => ({
       name: item.name,
       price: item.price,
-       
     }));
-    localStorage.setItem('cartItems', JSON.stringify(selectedItems));
-    const filteredItems = this.menuItems.filter(item => item.selected);
-    console.log('selected items :', filteredItems);
-    this.router.navigate(['/reserve']);
-}
-goBack() {
-  // Navigate back to the previous page :menue page 
 
-  this.router.navigate(['/menu']);  
+  localStorage.setItem('cartItems', JSON.stringify(selectedItems));
+  const filteredItems = this.menuItems.filter(item => item.selected);
+  console.log('selected items :', filteredItems);
+
+  // Send restaurantId to the reserve component
+  this.router.navigate(['/reserve', this.restaurantId]);
 }
+
+goBack(): void {
+// navigate to search component:
+this.router.navigate(['']);
+ // this.router.navigate(['/search']);
+}
+
 }

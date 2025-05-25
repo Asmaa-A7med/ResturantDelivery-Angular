@@ -41,10 +41,13 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corrupti, 
     </div>
     
     
-    <div class="d-flex justify-content-end mt-2" style="max-width: 40%; margin:90%;">
-      <button class="btn btn-primary" [disabled]="!hasSelectedItem" (click)="goToNextPage()">
-        Next
-      </button>
-    </div>
+   <div class="d-flex justify-content-between mt-4" style="max-width: 40%; margin: 0 auto;">
+  <button class="btn btn-secondary" (click)="goBack()">Back</button>
+  
+  <button class="btn btn-primary" [disabled]="!hasSelectedItem" (click)="goToNextPage()">
+    Next
+  </button>
+</div>
+
   </div>
   

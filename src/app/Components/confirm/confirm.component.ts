@@ -69,6 +69,11 @@ checkout() {
     icon: 'success',
     confirmButtonText: 'OK',
     confirmButtonColor: '#ffc107'
+  }).then(() => {
+     
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('reservationData');
+ location.reload();  
   });
 }
 
