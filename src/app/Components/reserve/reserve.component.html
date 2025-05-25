@@ -54,7 +54,8 @@
                 <span class="input-group-text" style="background-color:black; color:white;">
                   <i class="bi bi-geo-alt"></i>
                 </span>
-                <input type="text" class="form-control" name="address" [(ngModel)]="reservation.address" required placeholder="Address" #address="ngModel" />
+                <textarea class="form-control" name="address" [(ngModel)]="reservation.address" required placeholder="Address" #address="ngModel">address</textarea>
+                <!-- <text type="text" class="form-control" name="address" [(ngModel)]="reservation.address" required placeholder="Address" #address="ngModel" /> -->
               </div>
               <div class="text-danger" *ngIf="address.invalid && address.touched">
                 Address is required.

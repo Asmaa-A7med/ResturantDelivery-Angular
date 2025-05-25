@@ -25,6 +25,7 @@ export class ResturantService {
 
   // menue items :
   getMenuByRestaurantId(restaurantId: number): Observable<MenuItem[]> {
+    console.log(restaurantId);
     return this.httpClient.get<MenuItem[]>(`${this.apiUrl}/Resturant/${restaurantId}/MenuItems`);
   }
   

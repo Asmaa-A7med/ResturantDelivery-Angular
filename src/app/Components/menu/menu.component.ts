@@ -3,7 +3,7 @@ import { MenuItem } from '../../models/menueItems';
 import { ResturantService } from '../../Services/resturant.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -14,12 +14,14 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit{
   menuItems: MenuItem[] = [];
   hasSelectedItem: boolean = false;
+  restaurantId=0;
 
-  constructor(private menuService:ResturantService,private router: Router) {}
+  constructor(private menuService:ResturantService,private router: Router,public activateRoute:ActivatedRoute) {}
 
   ngOnInit(): void {
-    const restaurantId = 1;  
-    this.menuService.getMenuByRestaurantId(restaurantId).subscribe({
+    this.restaurantId = Number(this.activateRoute.snapshot.paramMap.get('id'));
+ //   let restaurantId=this.activateRoute.params(data=>[]) ;  
+    this.menuService.getMenuByRestaurantId(this.restaurantId).subscribe({
       next: (data) => {
         this.menuItems = data;
       },
