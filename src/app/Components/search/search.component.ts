@@ -61,7 +61,9 @@ export class SearchComponent {
     });
   }
   
-  
+  navigateTo(path: string) {
+  this.router.navigate(['/' + path]);
+  }
 
   viewMenu(restaurantId: number) {
     this.router.navigate(['/menu', restaurantId]);

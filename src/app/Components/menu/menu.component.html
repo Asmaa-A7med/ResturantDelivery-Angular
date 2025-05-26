@@ -13,15 +13,15 @@
 
       <div class="flex-grow-1 d-flex flex-column justify-content-between">
         <div>
-          <!-- ✅ LABEL with checkbox inline -->
+         
           <label [for]="'checked-' + i" class="mb-1 d-flex align-items-center gap-2"
-                 style="color: #FFD700; border-bottom: 3px solid #FFD700; width: fit-content;">
+                 style="color: #8abb04; border-bottom: 3px solid #8abb04; width: fit-content;">
             <input type="checkbox"
                    [id]="'checked-' + i"
                    [(ngModel)]="item.selected"
                    (change)="onSelectionChange()"
                    class="form-check-input"
-                   style="border-color: #FFD700;"
+                   style="border-color: #8abb04;"
                    [class.bg-warning]="item.selected" />
             {{ item.name }}
           </label>

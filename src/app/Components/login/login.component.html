@@ -1,0 +1,78 @@
+<div class="login-page d-flex align-items-center justify-content-center" style="
+  background-image: url('assets/imgs/login.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+">
+
+ 
+ <div 
+  class="card border-primary shadow-lg p-5" 
+  style="
+    max-width: 450px;
+    width: 90%;
+    z-index: 2;
+    background-color: rgba(243, 239, 239, 0.911);  
+    border: 1px solid #098a78;                    
+    border-radius: 12px;
+    min-height: 550px;                            
+    backdrop-filter: blur(4px);              
+  "
+>
+  <h3 class="text-center mb-4 text-primary fw-bold">Login</h3>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input 
+          type="email" 
+          formControlName="email"
+          placeholder="Enter your email"
+          class="form-control" 
+          [ngClass]="{'is-invalid': email?.invalid && (email?.touched || email?.dirty)}"
+        />
+        <div *ngIf="email?.invalid && (email?.touched || email?.dirty)" class="invalid-feedback">
+          <div *ngIf="email?.errors?.['required']">Email is required.</div>
+          <div *ngIf="email?.errors?.['pattern']">Enter a valid email ending with .com</div>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input 
+          type="password" 
+          formControlName="password"
+          placeholder="Enter your password"
+          class="form-control" 
+          [ngClass]="{'is-invalid': password?.invalid && (password?.touched || password?.dirty)}"
+        />
+        <div *ngIf="password?.invalid && (password?.touched || password?.dirty)" class="invalid-feedback">
+          <div *ngIf="password?.errors?.['required']">Password is required.</div>
+          <div *ngIf="password?.errors?.['pattern']">
+            Password must be at least 8 characters, include an uppercase letter, number, and special character.
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="!loginForm.valid">
+        Login
+      </button>
+      <div class="text-center mt-3">
+    <span>Don't have an account? </span>
+    <a routerLink="/register" class="text-primary fw-semibold text-decoration-none">
+      Register
+    </a>
+  </div>
+<div class="text-center mt-2">
+  <a routerLink="/forget-password" class="text-primary">Forget Password?</a>
+</div>
+
+
+
+    </form>
+  </div>
+</div>
