@@ -36,7 +36,7 @@ export class ReserveComponent implements OnInit {
         localStorage.setItem('selectedItemId', this.itemId);
       }
       console.log('Reservation data:', this.reservation);
-      alert('Reservation confirmed!');
+  //    alert('Reservation confirmed!');
       this.router.navigate(['/confirm']);
       
     }

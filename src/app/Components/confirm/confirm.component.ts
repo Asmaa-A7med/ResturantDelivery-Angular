@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { OrderService } from '../../Services/order.service';
 
 @Component({
   selector: 'app-confirm',
@@ -9,6 +12,7 @@ import Swal from 'sweetalert2';
   styleUrl: './confirm.component.css'
 })
 export class ConfirmComponent implements OnInit{
+  constructor(private http: HttpClient, private router:Router ,private orderService: OrderService) {}
   reservationData: any;
   cartItems: any[] = []; 
   ngOnInit() {
@@ -59,9 +63,17 @@ goBack() {
   history.back();
 }
 checkout() {
-  
-  localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-
+  const orderPayload = {
+    items: this.cartItems.map(item => ({
+      name: item.name,
+      quantity: item.quantity,
+      subTotal: item.price * item.quantity
+    })),
+    totalAmount: this.getSubtotal(),
+    customer: this.reservationData  
+  };
+   this.orderService.checkout(orderPayload).subscribe({
+    next: () => {
   //  SweetAlert
   Swal.fire({
     title: 'Reservation Confirmed!',
@@ -69,13 +81,19 @@ checkout() {
     icon: 'success',
     confirmButtonText: 'OK',
     confirmButtonColor: '#ffc107'
+
   }).then(() => {
-     
+ 
     localStorage.removeItem('cartItems');
     localStorage.removeItem('reservationData');
- location.reload();  
+
+     this.router.navigate(['']);
+
+   });
+    },
+    error: () => {
+      Swal.fire('Error', 'Failed to send confirmation email.', 'error');
+    }
   });
 }
-
-
 }

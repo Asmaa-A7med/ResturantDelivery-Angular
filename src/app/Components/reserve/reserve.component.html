@@ -40,12 +40,22 @@
                 <span class="input-group-text" style="background-color:black; color:white;">
                   <i class="bi bi-envelope"></i>
                 </span>
-                <input type="email" class="form-control" name="email" [(ngModel)]="reservation.email" required email placeholder="Email" #email="ngModel" />
+               <input 
+  type="email" 
+  class="form-control" 
+  name="email" 
+  [(ngModel)]="reservation.email" 
+  required 
+  email 
+  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[cC][oO][mM]$"
+  placeholder="Email" 
+  #email="ngModel" />
               </div>
-              <div class="text-danger" *ngIf="email.invalid && email.touched">
-                <div *ngIf="email.errors?.['required']">Email is required.</div>
-                <div *ngIf="email.errors?.['email']">Enter a valid email address.</div>
-              </div>
+             <div class="text-danger" *ngIf="email.invalid && email.touched">
+  <div *ngIf="email.errors?.['required']">Email is required.</div>
+  <div *ngIf="email.errors?.['email']">Enter a valid email address.</div>
+  <div *ngIf="email.errors?.['pattern']">Email must end with .com</div>
+</div>
             </div>
   
            

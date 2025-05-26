@@ -1,53 +1,48 @@
 <div class="p-4 max-w-4xl mx-auto bg-light">
-    <h2 class="text-center mb-4 fw-bold">Menu Items</h2>
-  
-    <div class="d-flex flex-wrap justify-content-center gap-3">
-      <div *ngFor="let item of menuItems; let i =index" 
-           class="d-flex border rounded p-2 mb-3 shadow-sm position-relative"
-           style="background-color: #f0f0f0; width: 40%; min-height: 140px;">
-        
-         
-        <img src="/assets/imgs/item.jpg" 
-             alt="item img" 
-             class="rounded"
-             style="width: 96px; height: 100%; object-fit: cover; margin-right: 15px;" />
-         
-        <div class="flex-grow-1 d-flex flex-column justify-content-between">
-          <div>
-            <label [for]=" 'checked-'+i" class="mb-1" style="color: #FFD700; display: inline-block; border-bottom: 3px solid #FFD700; width: fit-content;">
-              {{ item.name }} 
-            </label>
-      
-            <p class="text-secondary mb-2" style="font-size: 0.85rem;">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corrupti, fugiat odio, rem consequuntur nemo hic, nam qui doloremque ipsam perferendis. Quia illum impedit est, velit quod asperiores minus neque commodi ratione, quibusdam adipisci assumenda qui delectus? Rerum, hic reprehenderit!
-            </p>
-          </div>
-    
-          <p class="text-success fw-semibold mb-0" style="font-size: 0.9rem;">
-            Price: {{ item.price | currency:'USD':'symbol':'1.2-2' }}
+  <h2 class="text-center mb-4 fw-bold">Menu Items</h2>
+
+  <div class="d-flex flex-wrap justify-content-center gap-3">
+    <div *ngFor="let item of menuItems; let i = index" 
+         class="d-flex border rounded p-2 mb-3 shadow-sm position-relative"
+         style="background-color: #f0f0f0; width: 40%; min-height: 140px;">
+
+      <img src="/assets/imgs/item.jpg" 
+           alt="item img" 
+           class="rounded"
+           style="width: 96px; height: 100%; object-fit: cover; margin-right: 15px;" />
+
+      <div class="flex-grow-1 d-flex flex-column justify-content-between">
+        <div>
+          <!-- ✅ LABEL with checkbox inline -->
+          <label [for]="'checked-' + i" class="mb-1 d-flex align-items-center gap-2"
+                 style="color: #FFD700; border-bottom: 3px solid #FFD700; width: fit-content;">
+            <input type="checkbox"
+                   [id]="'checked-' + i"
+                   [(ngModel)]="item.selected"
+                   (change)="onSelectionChange()"
+                   class="form-check-input"
+                   style="border-color: #FFD700;"
+                   [class.bg-warning]="item.selected" />
+            {{ item.name }}
+          </label>
+
+          <p class="text-secondary mb-2" style="font-size: 0.85rem;">
+           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet vitae numquam, deserunt odio et, excepturi, iste fuga repudiandae distinctio quos nisi. Beatae assumenda minima sed suscipit nobis soluta pariatur! In velit tempore ex, placeat at distinctio voluptates consectetur, quasi molestias illo unde, voluptas repellendus animi eum delectus eius eos nam.
           </p>
         </div>
-  
-       
-        <input type="checkbox"
-        [id]="'checked-'+i"
-               [(ngModel)]="item.selected"
-               (change)="onSelectionChange()"
-               class="form-check-input ms-3 align-self-start"
-               style="border-color: #FFD700;"
-               [class.bg-warning]="item.selected" />
-        
+
+        <p class="text-success fw-semibold mb-0" style="font-size: 0.9rem;">
+          Price: {{ item.price | currency:'USD':'symbol':'1.2-2' }}
+        </p>
       </div>
     </div>
-    
-    
-   <div class="d-flex justify-content-between mt-4" style="max-width: 40%; margin: 0 auto;">
-  <button class="btn btn-secondary" (click)="goBack()">Back</button>
-  
-  <button class="btn btn-primary" [disabled]="!hasSelectedItem" (click)="goToNextPage()">
-    Next
-  </button>
-</div>
-
   </div>
-  
+
+  <!-- Footer buttons -->
+  <div class="d-flex justify-content-between mt-4" style="max-width: 40%; margin: 0 auto;">
+    <button class="btn btn-secondary" (click)="goBack()">Back</button>
+    <button class="btn btn-primary" [disabled]="!hasSelectedItem" (click)="goToNextPage()">
+      Next
+    </button>
+  </div>
+</div>
