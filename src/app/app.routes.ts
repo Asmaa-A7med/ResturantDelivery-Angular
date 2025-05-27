@@ -14,7 +14,7 @@ export const routes: Routes = [
     { path: 'reserve/:id', loadComponent: () => import('./Components/reserve/reserve.component').then(m => m.ReserveComponent) },
      { path: 'login', component: LoginComponent },
 { path: 'register', loadComponent: () => import('./Components/register/register.component').then(m => m.RegisterComponent) },
-
+{path:'reset-password', loadComponent: () => import('./Components/reset-password/reset-password.component').then(m => m.ResetPasswordComponent) },
 { path: 'forget-password', loadComponent: () => import('./Components/forget-password/forget-password.component').then(m => m.ForgetPasswordComponent) },
 
 ];
